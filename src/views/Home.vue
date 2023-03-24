@@ -9,7 +9,7 @@
           导航栏
         </a-layout-header>
         <a-layout-content>
-         <Content></Content>
+          <router-view></router-view>
         </a-layout-content>
       </a-layout>
       </a-layout>
@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import Content from "../components/Content.vue";
 import Sider from "../components/Sider.vue";
 import Footer from "../components/Footer.vue";
 </script>
