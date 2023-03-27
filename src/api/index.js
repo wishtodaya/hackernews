@@ -1,4 +1,4 @@
- function getContentList(current, pageSize) {
+ function getContentList(current,pageSize,date) {
       let result = {
             total: 50,
             contentList: []
@@ -7,7 +7,7 @@
             result.contentList.push({
                 id: i,
                 title: `这是第${i}条数据`,
-                abstract: `这是第${i}条数据的内容`
+                abstract: `这是第${i}条数据的内容${date}`
             })
         }
       return result;

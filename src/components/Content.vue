@@ -15,27 +15,34 @@
 
 <script setup>
 import {getContentList} from "../api/index.js";
-import {onMounted, reactive, toRefs} from "vue";
+import { onMounted, reactive, toRefs,} from "vue";
+import {onBeforeRouteUpdate} from "vue-router";
+
+//获取路由参数，根据参数请求数据
+let date=null;
+onBeforeRouteUpdate((to, from, next) => {
+  date= to.query.date;
+  fetchData(state.current,state.pageSize,date)
+  next();
+});
 const state = reactive({
   contentList: [],
   current: 1,
   pageSize: 5,
-  total: 0
+  total: 0,
 });
-
-const fetchData =(current,pageSize)=>{
-  console.log("获取数据："+current)
-  const result =getContentList(current,pageSize);
-  console.log(result)
+//路由参数解析
+const fetchData =(current, pageSize,date)=>{
+  const result = getContentList(current,pageSize,date);
   state.contentList =result.contentList;
   state.total = result.total;
 }
 onMounted(() => {
-fetchData(1,5)
+fetchData(1,5,date)
 });
 const onChange = (page) => {
   current.value = page;
-  fetchData(page,pageSize)
+  fetchData(page,state.pageSize,date)
 };
 const {current, pageSize, total,contentList} = toRefs(state);
 </script>

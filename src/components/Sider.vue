@@ -28,7 +28,6 @@ import router from "../router/index.js";
       selectedKeys: [],
     });
     const selectItem = (item) => {
-      console.log(item)
       router.push({ path: '/', query: {date: item.key } })
     };
    const { openKeys, selectedKeys } = toRefs(state);
